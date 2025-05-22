@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   Table,
   TableBody,
@@ -31,6 +32,7 @@ interface ArticlesTableProps {
 }
 
 export function ArticlesTable({ articles }: ArticlesTableProps) {
+  const router = useRouter();
   const isMobile = useIsMobile();
   const [selectedArticles, setSelectedArticles] = useState<Set<string>>(
     new Set()
@@ -62,6 +64,10 @@ export function ArticlesTable({ articles }: ArticlesTableProps) {
 
   const handleSort = () => {
     setSortDirection((prev) => (prev === "asc" ? "desc" : "asc"));
+  };
+
+  const handleArticleClick = (articleId: string) => {
+    router.push(`/articles/${articleId}`);
   };
 
   const sortedArticles = [...articles].sort((a, b) => {
@@ -136,7 +142,12 @@ export function ArticlesTable({ articles }: ArticlesTableProps) {
                       }
                     />
                   </TableCell>
-                  <TableCell className="font-medium">{article.title}</TableCell>
+                  <TableCell
+                    className="font-medium cursor-pointer hover:text-blue-500"
+                    onClick={() => handleArticleClick(article.id)}
+                  >
+                    {article.title}
+                  </TableCell>
                   {!isMobile ? (
                     <>
                       <TableCell>

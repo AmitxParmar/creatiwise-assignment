@@ -37,6 +37,7 @@ export function ArticlesTable({ articles }: ArticlesTableProps) {
   );
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
 
   const handleSelectAll = (checked: boolean | "indeterminate") => {
     if (checked === true) {
@@ -59,8 +60,19 @@ export function ArticlesTable({ articles }: ArticlesTableProps) {
     setSelectedArticles(newSelectedArticles);
   };
 
-  const totalPages = Math.ceil(articles.length / itemsPerPage);
-  const paginatedArticles = articles.slice(
+  const handleSort = () => {
+    setSortDirection((prev) => (prev === "asc" ? "desc" : "asc"));
+  };
+
+  const sortedArticles = [...articles].sort((a, b) => {
+    if (sortDirection === "asc") {
+      return a.title.localeCompare(b.title);
+    }
+    return b.title.localeCompare(a.title);
+  });
+
+  const totalPages = Math.ceil(sortedArticles.length / itemsPerPage);
+  const paginatedArticles = sortedArticles.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -85,7 +97,7 @@ export function ArticlesTable({ articles }: ArticlesTableProps) {
                 />
               </TableHead>
               <TableHead>
-                <Button variant="ghost" size="sm">
+                <Button variant="ghost" size="sm" onClick={handleSort}>
                   Article Title <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
               </TableHead>
@@ -143,8 +155,7 @@ export function ArticlesTable({ articles }: ArticlesTableProps) {
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <Button variant="ghost" size="icon">
-                          <Globe className="h-5 w-5 mr-1 text-blue-500" />{" "}
-                          {/* Placeholder for WordPress icon */}
+                          <Globe className="h-5 w-5 mr-1 text-blue-500" />
                           <MoreVertical className="h-4 w-4" />
                         </Button>
                       </DropdownMenuTrigger>

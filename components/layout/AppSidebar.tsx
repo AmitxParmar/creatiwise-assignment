@@ -42,7 +42,7 @@ import {
 const mainNavItems = [
   {
     title: "Articles",
-    href: "/articles",
+    href: "/",
     icon: Newspaper,
     subItems: [
       { title: "Create Article", href: "/articles/create" },

@@ -19,7 +19,6 @@ import {
   BarChart3,
   Users,
   HelpCircle,
-  LifeBuoy,
   Briefcase,
   LayoutGrid,
   Link2,

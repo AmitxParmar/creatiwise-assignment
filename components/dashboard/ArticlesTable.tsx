@@ -167,7 +167,7 @@ export function ArticlesTable({ articles }: ArticlesTableProps) {
           </TableBody>
         </Table>
       </div>
-      <div className="flex flex-col gap-4 p-4 border-t">
+      <div className="flex flex-col relative bottom-0.5 gap-4 p-4 border-t">
         <div className="text-sm text-muted-foreground">
           Total {articles.length} Article Titles
         </div>

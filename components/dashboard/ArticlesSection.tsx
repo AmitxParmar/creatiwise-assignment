@@ -26,7 +26,7 @@ const ArticlesSection = () => {
   );
 
   return (
-    <div className="w-screen lg:w-full px-4 sm:px-2 lg:px-8">
+    <div className="w-screen lg:w-full lg:px-8">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
         <h1 className="text-xl sm:text-2xl font-semibold">Articles</h1>
         <div className="relative w-full sm:w-auto sm:max-w-xs">

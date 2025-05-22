@@ -6,10 +6,9 @@ interface PageProps {
   params: {
     id: string;
   };
-  searchParams: { [key: string]: string | string[] | undefined };
 }
 
-const ArticlePage = async ({ params, searchParams }: PageProps) => {
+const ArticlePage = async ({ params }: PageProps) => {
   const article = dummyArticles.find((article) => article.id === params.id);
 
   if (!article) {

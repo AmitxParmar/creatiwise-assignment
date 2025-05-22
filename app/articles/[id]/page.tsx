@@ -13,7 +13,7 @@ const ArticlePage = async ({ params }: { params: Params }) => {
   }
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto py-8 px-6">
       <article className="max-w-3xl mx-auto">
         <h1 className="text-3xl font-bold mb-4">{article.title}</h1>
         <div className="flex gap-4 text-sm text-muted-foreground mb-6">

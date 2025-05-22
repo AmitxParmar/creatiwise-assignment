@@ -2,13 +2,14 @@ import React from "react";
 import { dummyArticles } from "@/types";
 import { notFound } from "next/navigation";
 
-type Props = {
+interface PageProps {
   params: {
     id: string;
   };
-};
+  searchParams: { [key: string]: string | string[] | undefined };
+}
 
-const ArticlePage = ({ params }: Props) => {
+const ArticlePage = async ({ params, searchParams }: PageProps) => {
   const article = dummyArticles.find((article) => article.id === params.id);
 
   if (!article) {

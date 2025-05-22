@@ -2,14 +2,11 @@ import React from "react";
 import { dummyArticles } from "@/types";
 import { notFound } from "next/navigation";
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
+type Params = Promise<{ id: string }>;
 
-const ArticlePage = async ({ params }: PageProps) => {
-  const article = dummyArticles.find((article) => article.id === params.id);
+const ArticlePage = async ({ params }: { params: Params }) => {
+  const { id } = await params;
+  const article = dummyArticles.find((article) => article.id === id);
 
   if (!article) {
     notFound();
